@@ -493,13 +493,123 @@
 	
 	
 	
-</style>
+
+    /* ══════════════════════════════════════════
+       📱 手機版響應式優化 (max-width: 480px)
+       ══════════════════════════════════════════ */
+    @media (max-width: 480px) {
+
+      /* 整體 padding 縮小，讓內容更寬 */
+      body { padding: 6px; }
+      .container { border-radius: 10px; }
+
+      /* Header：縮小字體與 padding */
+      .header { padding: 12px 16px; }
+      .header h1 { font-size: 18px; margin-bottom: 4px; }
+      .header p  { font-size: 11px; line-height: 1.4; }
+
+      /* 主體：垂直堆疊 */
+      .main { flex-direction: column; padding: 10px; gap: 10px; min-height: unset; }
+      .left { width: 100%; min-width: unset; padding: 10px; }
+      .right { width: 100%; }
+
+      /* Day 按鈕：橫向捲動，方便拇指點選 */
+      .left > .sectionTitle:first-child { margin-top: 0; }
+      .dayBtn { padding: 10px; margin-bottom: 8px; }
+      .dayBtn strong { font-size: 13px; }
+      .dayBtn small  { font-size: 11px; }
+
+      /* 景點清單按鈕 */
+      .itemBtn { padding: 9px 10px; }
+      .itemBtn .name { font-size: 13px; }
+
+      /* 地圖/相片 viewer */
+      .viewer { min-height: 260px; border-radius: 8px; }
+      .photoMain { height: 60%; }
+      .navArrow { width: 34px; height: 34px; font-size: 18px; }
+      .photoStrip { height: 48px; }
+
+      /* infoBar：垂直堆疊，按鈕移至下方 */
+      .infoBar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .actions { margin-left: 0; width: 100%; justify-content: flex-start; }
+      .aBtn { padding: 8px 14px; font-size: 13px; }
+      .infoTitle { font-size: 13px; }
+      .infoSub   { font-size: 11px; }
+
+      /* 詳細資料區塊 */
+      .details-section { padding: 14px 12px; }
+
+      /* 統計列：2 欄 */
+      .stats-bar { gap: 10px; }
+      .stat { min-width: calc(50% - 5px); padding: 10px 8px; }
+      .stat strong { font-size: 20px; }
+      .stat span   { font-size: 11px; }
+
+      /* 卡片格線：強制單欄 */
+      .details-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+      }
+      .card { padding: 12px; }
+      .card h4 { font-size: 14px; margin-bottom: 8px; }
+      .card p  { font-size: 12px; line-height: 1.55; margin-bottom: 6px; }
+
+      /* 交通路線卡片 */
+      .route-section { padding: 12px; margin-bottom: 12px; }
+      .route-section h4 { font-size: 13px; }
+      .route-section p  { font-size: 12px; line-height: 1.6; }
+
+      /* 詳細行程表格：強制單欄 */
+      .itinerary-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+      }
+
+      /* 行程表格本身 */
+      .itinerary-table { font-size: 12px; }
+      .itinerary-table thead th { padding: 8px 6px; font-size: 11px; }
+      .itinerary-table tbody td { padding: 7px 6px; font-size: 12px; }
+      .time-col { width: 46px; font-size: 11px; }
+      .note { font-size: 11px; }
+      .day-header { font-size: 14px; }
+
+      /* 章節標題 h3 */
+      .details-section h3 { font-size: 16px !important; margin-top: 16px !important; margin-bottom: 10px !important; }
+
+      /* Footer */
+      .footer { font-size: 11px; padding: 10px; }
+    }
+
+    /* ── 平板微調 (481px ~ 768px) ─────────────────── */
+    @media (min-width: 481px) and (max-width: 768px) {
+      body { padding: 10px; }
+      .header { padding: 12px 20px; }
+      .header h1 { font-size: 22px; }
+      .main { flex-direction: column; padding: 12px; min-height: unset; }
+      .left { width: 100%; min-width: unset; }
+      .viewer { min-height: 340px; }
+      .infoBar { flex-wrap: wrap; }
+      .actions { margin-left: 0; }
+      .details-section { padding: 20px 16px; }
+      .details-grid { grid-template-columns: 1fr !important; }
+      .itinerary-grid { grid-template-columns: 1fr !important; }
+      .stats-bar { gap: 10px; }
+      .stat { min-width: calc(50% - 5px); }
+    }
+
+  </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <h1>雲南 7 天旅行互動地圖</h1>
-      <p>行程：昆明（1 晚）→ 大理（2 晚）→ 麗江（3 晚）｜ 2026/03/12–03/18</p>
+      <p>行程：昆明（Day1-3）→ 大理（Day3-5）→ 麗江（Day5-7）｜ 2026/03/12–03/18</p>
     </div>
 
     <div class="main">
@@ -507,31 +617,31 @@
         <div class="sectionTitle">每日行程</div>
 
         <div class="dayBtn active" data-day="1">
-          <strong>Day 1｜12/3｜深圳 → 昆明</strong>
-          <small>翠湖公園、圓通禪寺（下午）</small>
+          <strong>Day 1｜星期四｜12/3｜深圳 → 昆明</strong>
+          <small>翠湖公園、圓通禪寺</small>
         </div>
         <div class="dayBtn" data-day="2">
-          <strong>Day 2｜13/3｜昆明 → 大理</strong>
-          <small>雲南省博物館、16:00 高鐵往大理</small>
+          <strong>Day 2｜星期五｜13/3｜昆明</strong>
+          <small>雲南省博物館、官渡古鎮</small>
         </div>
         <div class="dayBtn" data-day="3">
-          <strong>Day 3｜14/3｜大理</strong>
-          <small>大理古城（全日漫步）</small>
+          <strong>Day 3｜星期六｜14/3｜昆明 → 大理</strong>
+          <small>11:44 D3832 高鐵往大理、大理古城</small>
         </div>
         <div class="dayBtn" data-day="4">
-          <strong>Day 4｜15/3｜大理 → 麗江</strong>
-          <small>崇聖寺三塔、蒼山、洱海西岸、16:00 高鐵往麗江</small>
+          <strong>Day 4｜星期日｜15/3｜大理</strong>
+          <small>崇聖寺三塔、蒼山、洱海西岸</small>
         </div>
         <div class="dayBtn" data-day="5">
-          <strong>Day 5｜16/3｜麗江</strong>
-          <small>麗江古城、黑龍潭公園</small>
+          <strong>Day 5｜星期一｜16/3｜大理 → 麗江</strong>
+          <small>07:45 C985 高鐵往麗江、麗江古城</small>
         </div>
         <div class="dayBtn" data-day="6">
-          <strong>Day 6｜17/3｜玉龍雪山</strong>
+          <strong>Day 6｜星期二｜17/3｜玉龍雪山</strong>
           <small>玉龍雪山、藍月谷（一日遊）</small>
         </div>
         <div class="dayBtn" data-day="7">
-          <strong>Day 7｜18/3｜束河 → 深圳</strong>
+          <strong>Day 7｜星期三｜18/3｜束河 → 深圳</strong>
           <small>束河古鎮、麗江機場夜機</small>
         </div>
 
@@ -576,9 +686,6 @@
     </div>
 
     <div class="details-section">
-	  <h3 style="color: #fff5e6; font-size: 20px; margin-bottom: 15px; margin-top: 20px;">🏨 住宿建議（點擊卡片查看相片）</h3>
-      <div id="hotelMainList" class="details-grid"></div>
-
       <h3 style="color: #fff5e6; font-size: 24px; margin-bottom: 10px;">📊 旅行概況</h3>
       <div class="stats-bar">
           <div class="stat"><strong>7</strong><span>天數</span></div>
@@ -601,16 +708,16 @@
           <p><strong>包車至酒店：</strong>30-40 分鐘（¥80-100/人）</p>
       </div>
       <div class="route-section">
-          <h4>🚄 Day 2: 昆明 → 大理（下午出發）</h4>
-          <p><strong>行程變更：</strong>下午 16:00 左右高鐵</p>
-          <p><strong>車次建議：</strong>昆明站 → 大理站</p>
-          <p><strong>運行時間：</strong>約 2.5 小時，傍晚抵達大理古城</p>
+          <h4>🚄 Day 3: 昆明 → 大理（14/3）</h4>
+          <p><strong>列車：</strong>D3832 次</p>
+          <p><strong>出發：</strong>昆明站 11:44 | <strong>抵達：</strong>大理站 約 14:10</p>
+          <p><strong>運行時間：</strong>約 2.5 小時</p>
       </div>
-    <div class="route-section">
-          <h4>🚄 Day 4: 大理 → 麗江（下午出發）</h4>
-          <p><strong>行程變更：</strong>下午 16:00 左右高鐵</p>
-          <p><strong>車次建議：</strong>大理站 → 麗江站</p>
-          <p><strong>運行時間：</strong>約 1.5 小時，傍晚抵達麗江入住</p>
+      <div class="route-section">
+          <h4>🚄 Day 5: 大理 → 麗江（16/3）</h4>
+          <p><strong>列車：</strong>C985 次</p>
+          <p><strong>出發：</strong>大理站 07:45 | <strong>抵達：</strong>麗江站 約 09:15</p>
+          <p><strong>運行時間：</strong>約 1.5 小時</p>
       </div>
       <div class="route-section">
           <h4>🛫 Day 7: 麗江三義 → 深圳寶安 (T3)</h4>
@@ -620,8 +727,8 @@
 		</div>
       <h3 style="color: #fff5e6; font-size: 20px; margin-bottom: 15px; margin-top: 20px;">🎯 行程重點</h3>
       <div class="details-grid">
-         <div class="card"><h4>🏛️ 雲南省博物館 (Day 2)</h4><p>上午參觀 | 昆明歷史文化</p><p>午餐後前往高鐵站</p></div>
-		 <div class="card"><h4>🏯 大理古城 (Day 3)</h4><p>全日遊玩 | 深度體驗</p><p>人民路、洋人街</p></div>
+         <div class="card"><h4>🏛️ 雲南省博物館 (Day 2)</h4><p>上午參觀 | 昆明歷史文化</p><p>下午遊官渡古鎮</p></div>
+         <div class="card"><h4>🏯 大理古城 (Day 3)</h4><p>下午抵達後即開始遊覽</p><p>人民路、洋人街</p></div>
          <div class="card"><h4>🏔️ 蒼山 (Day 4)</h4><p>感通索道或洗馬潭索道</p><p>俯瞰洱海全景</p></div>
          <div class="card"><h4>🌊 洱海西岸 (Day 4)</h4><p>崇聖寺三塔後前往</p><p>才村、喜洲、海舌公園</p></div>
       </div>
@@ -749,8 +856,9 @@
       <tbody>
         <tr><td class="time-col">10:30</td><td>前往昆明市中心</td><td class="note">車程 30-40 分鐘</td></tr>
         <tr><td class="time-col">12:00</td><td>入住酒店、午餐</td><td class="note">可要求少辣</td></tr>
-        <tr><td class="time-col">14:00</td><td class="highlight">圓通寺參觀</td><td class="note">門票 ¥6/人</td></tr>
-        <tr><td class="time-col">19:00</td><td>晚餐（官渡古鎮）</td><td class="note">可要求少辣</td></tr>
+        <tr><td class="time-col highlight">14:00</td><td class="highlight">翠湖公園散步</td><td class="note">免費景點</td></tr>
+        <tr><td class="time-col highlight">16:00</td><td class="highlight">圓通寺參觀</td><td class="note">門票 ¥6/人，17:00 停止入園</td></tr>
+        <tr><td class="time-col">19:00</td><td>晚餐</td><td class="note">可要求少辣</td></tr>
         <tr><td class="time-col">21:00</td><td>返回酒店休息</td><td></td></tr>
       </tbody>
     </table>
@@ -758,63 +866,70 @@
 
   <!-- Day 2 -->
   <div class="card">
-    <h4 class="day-header">Day 2：昆明 → 大理 (13/3)</h4>
+    <h4 class="day-header">Day 2：昆明 (13/3)</h4>
     <table class="itinerary-table">
       <thead><tr><th>時間</th><th>活動</th><th>備註</th></tr></thead>
       <tbody>
         <tr><td class="time-col">08:00</td><td>酒店早餐</td><td class="note">自助或點餐</td></tr>
         <tr><td class="time-col highlight">09:00</td><td class="highlight">雲南省博物館</td><td class="note">了解雲南歷史</td></tr>
         <tr><td class="time-col">12:00</td><td>午餐</td><td class="note">博物館附近</td></tr>
-        <tr><td class="time-col">14:00</td><td>前往高鐵站</td><td class="note">取行李出發</td></tr>
-        <tr><td class="time-col highlight">16:00</td><td class="highlight">高鐵：昆明 → 大理</td><td class="note">約 2.5 小時</td></tr>
-        <tr><td class="time-col">19:00</td><td>抵達大理古城</td><td class="note">包車入住</td></tr>
-        <tr><td class="time-col">20:00</td><td>酒店休息</td><td></td></tr>
+        <tr><td class="time-col highlight">16:00</td><td class="highlight">官渡古鎮</td><td class="note">昆明最古老古鎮</td></tr>
+        <tr><td class="time-col">20:00</td><td>返回酒店休息</td><td></td></tr>
       </tbody>
     </table>
   </div>
 
   <!-- Day 3 -->
   <div class="card">
-    <h4 class="day-header">Day 3：大理深度遊 (14/3)</h4>
+    <h4 class="day-header">Day 3：昆明 → 大理 (14/3)</h4>
     <table class="itinerary-table">
       <thead><tr><th>時間</th><th>活動</th><th>備註</th></tr></thead>
       <tbody>
-        <tr><td class="time-col">09:00</td><td>酒店早餐</td><td></td></tr>
-        <tr><td class="time-col highlight">10:00</td><td class="highlight">大理古城漫步</td><td class="note">洋人街、人民路</td></tr>
-        <tr><td class="time-col">12:30</td><td>午餐（古城內）</td><td class="note">白族風味</td></tr>
-		<tr><td class="time-col">14:00</td><td>洱海西岸遊</td><td class="note">才村、喜洲</td></tr>
-        <tr><td class="time-col">16:00</td><td>城牆漫步</td><td class="note">俯瞰全景</td></tr>
-        <tr><td class="time-col">20:00</td><td>古城夜景</td><td class="note">體驗夜生活</td></tr>
-		<tr><td class="time-col">21:30</td><td>酒店休息</td><td></td></tr>
+        <tr><td class="time-col">08:30</td><td>酒店早餐、退房</td><td class="note">行李寄存或帶走</td></tr>
+        <tr><td class="time-col">10:30</td><td>前往昆明高鐵站</td><td class="note">車程 20-30 分鐘</td></tr>
+        <tr><td class="time-col highlight">11:44</td><td class="highlight">高鐵 D3832：昆明 → 大理</td><td class="note">約 2.5 小時</td></tr>
+        <tr><td class="time-col">14:10</td><td>抵達大理站</td><td class="note">包車前往古城（30 分鐘）</td></tr>
+        <tr><td class="time-col">15:00</td><td>入住酒店</td><td class="note">古城內酒店</td></tr>
+        <tr><td class="time-col highlight">16:00</td><td class="highlight">大理古城漫步</td><td class="note">洋人街、人民路</td></tr>
+        <tr><td class="time-col">18:00</td><td>洱海邊散步</td><td class="note">看夕陽</td></tr>
+        <tr><td class="time-col">20:00</td><td>晚餐（古城）</td><td class="note">涼雞米線、砂鍋魚</td></tr>
       </tbody>
     </table>
   </div>
 
   <!-- Day 4 -->
   <div class="card">
-    <h4 class="day-header">Day 4：大理 → 麗江 (15/3)</h4>
+    <h4 class="day-header">Day 4：大理 (15/3)</h4>
     <table class="itinerary-table">
       <thead><tr><th>時間</th><th>活動</th><th>備註</th></tr></thead>
       <tbody>
-        <tr><td class="time-col highlight">09:00</td><td class="highlight">崇聖寺三塔</td><td class="note">拍攝倒影</td></tr>
-        <tr><td class="time-col highlight">11:00</td><td class="highlight">蒼山（感通索道）</td><td class="note">俯瞰洱海</td></tr>
-        <tr><td class="time-col highlight">16:30</td><td class="highlight">高鐵：大理 → 麗江</td><td class="note">約 1.5 小時</td></tr>
-        <tr><td class="time-col">19:30</td><td>麗江晚餐</td><td class="note">臘排骨火鍋</td></tr>
+        <tr><td class="time-col">08:00</td><td>酒店早餐</td><td></td></tr>
+        <tr><td class="time-col highlight">09:00</td><td class="highlight">崇聖寺三塔</td><td class="note">門票 ¥75/人，拍攝倒影</td></tr>
+        <tr><td class="time-col highlight">11:00</td><td class="highlight">蒼山（感通索道）</td><td class="note">俯瞰洱海全景</td></tr>
+        <tr><td class="time-col">13:00</td><td>午餐</td><td class="note">蒼山腳下</td></tr>
+        <tr><td class="time-col highlight">14:00</td><td class="highlight">洱海西岸（才村、喜洲）</td><td class="note">包車半日遊</td></tr>
+        <tr><td class="time-col">18:00</td><td>返回古城休息</td><td></td></tr>
+        <tr><td class="time-col">20:00</td><td>晚餐（古城內）</td><td class="note">為明日早班高鐵做準備</td></tr>
       </tbody>
     </table>
   </div>
 
   <!-- Day 5 -->
   <div class="card">
-    <h4 class="day-header">Day 5：麗江古城 (16/3)</h4>
+    <h4 class="day-header">Day 5：大理 → 麗江 (16/3)</h4>
     <table class="itinerary-table">
       <thead><tr><th>時間</th><th>活動</th><th>備註</th></tr></thead>
       <tbody>
-        <tr><td class="time-col">10:00</td><td>麗江古城漫步</td><td class="note">四方街、木府</td></tr>
-        <tr><td class="time-col">12:30</td><td>午餐</td><td class="note">古城小吃</td></tr>
-        <tr><td class="time-col highlight">14:30</td><td class="highlight">黑龍潭公園</td><td class="note">雪山倒影</td></tr>
-        <tr><td class="time-col">16:30</td><td>自由活動</td><td class="note">喝咖啡/伴手禮</td></tr>
-        <tr><td class="time-col">20:00</td><td>古城夜景</td><td></td></tr>
+        <tr><td class="time-col">06:30</td><td>酒店早餐、退房</td><td class="note">行李整理好</td></tr>
+        <tr><td class="time-col">07:00</td><td>前往大理高鐵站</td><td class="note">車程 25-30 分鐘</td></tr>
+        <tr><td class="time-col highlight">07:45</td><td class="highlight">高鐵 C985：大理 → 麗江</td><td class="note">約 1.5 小時</td></tr>
+        <tr><td class="time-col">09:15</td><td>抵達麗江站</td><td class="note">包車前往古城（20 分鐘）</td></tr>
+        <tr><td class="time-col">10:00</td><td>入住酒店</td><td class="note">可先寄存行李</td></tr>
+        <tr><td class="time-col highlight">11:00</td><td class="highlight">麗江古城漫步</td><td class="note">四方街、大水車、木府</td></tr>
+        <tr><td class="time-col">13:00</td><td>午餐</td><td class="note">古城小吃</td></tr>
+        <tr><td class="time-col highlight">15:00</td><td class="highlight">黑龍潭公園</td><td class="note">玉龍雪山倒影</td></tr>
+        <tr><td class="time-col">17:00</td><td>自由活動</td><td class="note">伴手禮/咖啡</td></tr>
+        <tr><td class="time-col">19:00</td><td>晚餐</td><td class="note">納西火鍋（臘排骨）</td></tr>
       </tbody>
     </table>
   </div>
@@ -888,7 +1003,7 @@
     </div>
 
     <div class="footer">
-      <span>互動地圖｜更新：2026-02-09</span>
+      <span>互動地圖｜更新：2026-03-09</span>
     </div>
   </div>
 
@@ -967,19 +1082,20 @@ const POI = {
         cleanUrl("https://dimg04.tripcdn.com/images/1n96g424x90no35moCCB5.png"),
         cleanUrl("https://dimg04.tripcdn.com/images/1n90n424x90no16huA936.png")
       ]
-    },
+    }
+  ],
+  3: [
+
+ 
 	    {
       name: "大理高鐵站",
       tag: "交通樞紐",
       url: cleanUrl("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.4902724814165!2d100.24696307539467!3d25.588619977461047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3727c1f9ccd2ea19%3A0x83504de94d5ff939!2z5aSn55CG56uZ!5e0!3m2!1szh-TW!2shk!4v1770255692116!5m2!1szh-TW!2shk"),
       photos: [
-        cleanUrl("https://scontent.fhkg3-2.fna.fbcdn.net/v/t39.30808-6/569669520_10231380546357939_4211245959173623675_n.jpg?stp=dst-jpegr_tt6&_nc_cat=111&ccb=1-7&_nc_sid=f727a1&_nc_ohc=HZKkyoBJwdwQ7kNvwHfwJtd&_nc_oc=AdlAQOobegQwW9656t7DMbMUMY0L6ra3PEmLB34LpPKOJwgaXtyfPEBLnHsktSrFFQU&_nc_zt=23&se=-1&_nc_ht=scontent.fhkg3-2.fna&_nc_gid=Z88nJXzRZOfBQMuxnK1nSg&oh=00_AfsGT4NQzi3qTuQCP2Y-Ushst7pWJ4n3lOyGOLUvVjy66A&oe=698A8D56")
+        cleanUrl("https://www.yngdsh.com.cn/comdata/6486506/202502/20250228103635426d37.jpg")
       ]
-    }
-  ],
-  3: [
-
-    {
+    },
+	   {
       name: "大理古城",
       tag: "古城",
       url: cleanUrl("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14380.202408286785!2d100.14531881085217!3d25.70274857137304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3727b8a8b50c5191%3A0xadc4fff21a4abd7e!2z5Lit5ZyL6Zuy5Y2X55yB5aSn55CG5biCIERhbGksIOWkp-eQhumOriDpgq7mlL_nvJbnoIE6IDY3MTAwMw!5e0!3m2!1szh-TW!2shk!4v1770255742816!5m2!1szh-TW!2shk"),
@@ -1102,12 +1218,11 @@ const POI = {
       tag: "機場",
       url: cleanUrl("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.4318078220595!2d100.24554807543102!3d26.66666897679472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37273631b0f63c33%3A0xc94bb0b5d6ca8886!2z6bqX5rGf5LiJ576p5qmf5aC0!5e0!3m2!1szh-TW!2shk!4v1770256660752!5m2!1szh-TW!2shk"),
       photos: [
-        cleanUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/%E4%B8%BD%E6%B1%9F%E6%9C%BA%E5%9C%BA_-_%E8%88%AA%E7%AB%99%E6%A5%BC_-_2025-05-12_04.jpg/1280px-%E4%B8%BD%E6%B1%9F%E6%9C%BA%E5%9C%BA_-_%E8%88%AA%E7%AB%99%E6%A5%BC_-_2025-05-12_04.jpg")
+        cleanUrl("https://img.alicdn.com/imgextra/i4/6000000008110/O1CN01iyOztm29mQij6VqbP_!!6000000008110-0-hotel.jpg_q50s50.jpg")
       ]
     }
   ]
 };
-
 const HOTELS = {
   "昆明": [
     {
@@ -1363,7 +1478,6 @@ const HOTELS = {
     });
 
     // Init
-    renderHotels();
     renderPoiList(1);
     const f = poiList.querySelector('.poiBtn');
     if(f) f.click();
